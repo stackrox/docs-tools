@@ -12,8 +12,10 @@ NODE_PATH="$(pwd)/node_modules"
 
 [[ -n "$BUNDLE_PATH" ]] || die "No bundle path specified"
 [[ -n "$CONTENT_REPO" ]] || die "No content repo specified"
+[[ -n "$OUTPUT_PATH" ]] || die "No output path specified"
 
-playbook_yml="$(mktemp).yml"
+mkdir -p "$OUTPUT_PATH"
+playbook_yml="${OUTPUT_PATH}/playbook.yml"
 cat >"$playbook_yml" <<EOF
 site:
   title: RHACS documentation
@@ -30,4 +32,5 @@ EOF
 
 export PATH="$(yarn bin):$PATH"
 
+echo "Playbook is at $playbook_yml"
 DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr NODE_PATH="$NODE_PATH" antora --generator antora-site-generator-lunr "$playbook_yml"
