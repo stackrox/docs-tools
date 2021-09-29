@@ -10,8 +10,8 @@ NODE_PATH="$(pwd)/node_modules"
 
 [[ -f package.json && -f yarn.lock && -d "$NODE_PATH" ]] || die "This must be run from within the project directory"
 
-[[ -z "$BUNDLE_PATH" ]] || die "No bundle path specified"
-[[ -z "$CONTENT_REPO" ]] || die "No content repo specified"
+[[ -n "$BUNDLE_PATH" ]] || die "No bundle path specified"
+[[ -n "$CONTENT_REPO" ]] || die "No content repo specified"
 
 playbook_yml="$(mktemp)"
 cat >"$playbook_yml" <<EOF
