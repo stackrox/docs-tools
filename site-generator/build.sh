@@ -13,7 +13,7 @@ NODE_PATH="$(pwd)/node_modules"
 [[ -n "$BUNDLE_PATH" ]] || die "No bundle path specified"
 [[ -n "$CONTENT_REPO" ]] || die "No content repo specified"
 
-playbook_yml="$(mktemp)"
+playbook_yml="$(mktemp).yml"
 cat >"$playbook_yml" <<EOF
 site:
   title: RHACS documentation
