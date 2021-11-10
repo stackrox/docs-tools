@@ -6,5 +6,5 @@ setup:
 	yarn install --frozen-lockfile
 
 .PHONY: bundle
-bundle:
+bundle: setup
 	env PATH="$(shell yarn bin):$(PATH)" gulp bundle
