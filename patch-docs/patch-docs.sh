@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Patch the OpenShift docs to be in the format expected by Antora.
+#
+# Prerequisites:
+#  0. DOCS_PATH points to a working copy of the RHACS docs (does not have to be a git directory).
+#  1. PATCHED_DOCS_PATH points to the path into which the patched docs will be written. This directory
+#     should be empty. If it does not exist, it will be created automatically.
+
 set -e
 
 info() {

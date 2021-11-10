@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# Scripts for building RHACS embedded documentation.
+# Prerequisites:
+#  0. `make prepare` has been run in this directory to create the bundle and install dependencies
+#  1. `DOCS_INPUT` points to the RHACS docs directory.
+#  2. `DOCS_OUTPUT` points to the directory where the output should be stored (index.html being stored
+#     directly at the root). This directory should be empty. If it does not exist, it will be created
+#     automatically.
+
+set -e
+
 info() {
   echo >&2 "$@"
 }
@@ -35,3 +45,5 @@ export BUNDLE_PATH="$bundle_file" CONTENT_REPO="$patched_docs_dir" OUTPUT_PATH="
 rm -rf "$patched_docs_dir"
 
 cp -a "${output_tmp}/build/site"/* "${DOCS_OUTPUT}"
+
+rm -rf "$output_tmp"

@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+# Build the site using antora.
+#
+# Prerequisites:
+#  0. `make setup` has been run to install Yarn dependencies
+#  1. The current working directory is the directory containing this script.
+#  2. BUNDLE_PATH is an absolute path pointing to the Antora UI bundle.
+#  3. CONTENT_REPO is a Git repository containing the (patched) docs contents in its `main` branch.
+#  4. OUTPUT_PATH is an absolute path pointing to the build output directory (the actual output will be
+#     stored in build/site/). The directory should be empty. If it does not exist, it will be created
+#     automatically.
+
+set -e
 
 die() {
 	echo >&2 "$@"
