@@ -59,7 +59,7 @@ while IFS='' read -r dir || [[ -n "$dir" ]]; do
   info "Copying $dir/* to $target_dir ..."
   mkdir -p "$target_dir"
   cp -rf "$dir"/* "$target_dir"
-done < <(find "$docs_copy_tmp" -depth 1 -type d)
+done < <(find "$docs_copy_tmp" -type d -mindepth 1 -maxdepth 1)
 
 rm -rf "$docs_copy_tmp"
 
