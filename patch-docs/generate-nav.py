@@ -25,7 +25,7 @@ def print_topic_nav(topics, f, prefix="", dir_prefix=""):
             f.write(f"{prefix}* {t['Name']}\n")
             next_dir_prefix = dir_prefix
             if 'Dir' in t:
-                next_dir_prefix = dir_prefix + t['Dir'] + ":"
+                next_dir_prefix = dir_prefix + t['Dir'] + "/"
             print_topic_nav(t['Topics'], f=f, prefix=prefix + "*", dir_prefix=next_dir_prefix)
         else:
             f.write(f"{prefix}* xref:{dir_prefix}{t['File']}.adoc[{t['Name']}]\n")
