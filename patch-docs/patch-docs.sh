@@ -84,9 +84,10 @@ pip3 install -r "${SCRIPT_DIR}/requirements.txt"
 "${SCRIPT_DIR}/generate-nav.py" <"${DOCS_PATH}/_topic_map.yml"
 
 git init
-git checkout -b "main"
+git config user.name 'Docs Builder'
+git config user.email 'rhacs-eng+docsbot@redhat.com'
 git checkout -b "main"
 git add -A .
-git commit --author "Docs Builder <rhacs-eng+docsbot@redhat.com>" -am "Initial import"
+git commit -am "Initial import"
 
 info "Wrote docs to $PATCHED_DOCS_PATH"
