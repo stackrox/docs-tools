@@ -15,7 +15,8 @@ root_config = {
     'name': 'rhacs',
     'title': 'Red Hat Advanced Cluster Security for Kubernetes',
     'version': 'latest',
-    'nav': []
+    'start_page': 'ROOT:welcome/index.adoc',
+    'nav': ['modules/ROOT/nav.adoc']
 }
 
 
@@ -31,18 +32,8 @@ def print_topic_nav(topics, f, prefix="", dir_prefix=""):
             f.write(f"{prefix}* xref:{dir_prefix}{t['File']}.adoc[{t['Name']}]\n")
 
 
-for record in records:
-    dir = record['Dir']
-    if dir == 'welcome':
-        dir = 'ROOT'
-    nav_path=f'modules/{dir}/nav.adoc'
-    root_config['nav'].append(nav_path)
-    with open(f'docs/{nav_path}', 'w') as f:
-        if dir == 'ROOT':
-            print_topic_nav(record['Topics'], f=f)
-        else:
-            f.write(f"* {record['Name']}\n")
-            print_topic_nav(record['Topics'], f=f, prefix="*")
+with open('docs/modules/ROOT/nav.adoc', 'w') as f:
+    print_topic_nav(records, f)
 
 # Write the antora.yml config file.
 with open('docs/antora.yml', 'w') as f:

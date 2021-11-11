@@ -48,11 +48,8 @@ while IFS='' read -r dir || [[ -n "$dir" ]]; do
   files)
     target_dir=./docs/modules/ROOT/_files/
     ;;
-  welcome)
-    target_dir=./docs/modules/ROOT/pages/
-    ;;
   *)
-    target_dir="./docs/modules/${name}/pages/"
+    target_dir="./docs/modules/ROOT/pages/${name}/"
     ;;
   esac
   [[ -n "$target_dir" ]] || continue
@@ -66,7 +63,6 @@ rm -rf "$docs_copy_tmp"
 patch_file() {
   local file="$1"
   sed <"$file" 's@include::modules/@include::ROOT:partial$@g' |
-    sed -E 's@xref:../([^/]+)/@xref:\1:@g' |
     sed 's@image::@image::ROOT:@g' >"${file}.patched"
   mv "${file}.patched" "$file"
 }
