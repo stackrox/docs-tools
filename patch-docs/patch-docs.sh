@@ -62,8 +62,14 @@ rm -rf "$docs_copy_tmp"
 
 patch_file() {
   local file="$1"
+  local dir_base
+  dir_base="$(basename "$(dirname "$file")")"
+  local same_dir=""
+  if [[ "$dir_base" != "pages" ]]; then
+    same_dir="../${dir_base}/"
+  fi
   sed <"$file" 's@include::modules/@include::ROOT:partial$@g' |
-    sed 's@xref:./@xref:@g' |
+    sed 's@xref:./@xref:'"$same_dir"'@g' |
     sed 's@image::@image::ROOT:@g' >"${file}.patched"
   mv "${file}.patched" "$file"
 }
