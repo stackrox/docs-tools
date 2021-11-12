@@ -63,6 +63,7 @@ rm -rf "$docs_copy_tmp"
 patch_file() {
   local file="$1"
   sed <"$file" 's@include::modules/@include::ROOT:partial$@g' |
+    sed 's@xref:./@xref:@g' |
     sed 's@image::@image::ROOT:@g' >"${file}.patched"
   mv "${file}.patched" "$file"
 }
