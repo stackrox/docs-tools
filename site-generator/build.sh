@@ -46,3 +46,10 @@ export PATH="$(yarn bin):$PATH"
 
 echo "Playbook is at $playbook_yml"
 DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr NODE_PATH="$NODE_PATH" antora --generator antora-site-generator-lunr "$playbook_yml"
+
+echo "Checking for unresolved links ..."
+if grep -r -E 'class="[^"]*\bunresolved\b' "${OUTPUT_PATH}/build/site/" >&2; then
+  echo >&2 "Unresolved links found!"
+  exit 1
+fi
+echo "No unresolved links found"

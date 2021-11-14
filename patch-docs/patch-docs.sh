@@ -60,25 +60,12 @@ done < <(find "$docs_copy_tmp" -type d -mindepth 1 -maxdepth 1)
 
 rm -rf "$docs_copy_tmp"
 
-patch_file() {
-  local file="$1"
-  local relative_dir
-  relative_dir="$(echo "$(dirname "$file")/" | sed 's@^.*/ROOT/pages/@@g')"
-  sed <"$file" 's@include::modules/@include::ROOT:partial$@g' |
-    sed 's@xref:\.@xref:'"$relative_dir"'.@g' |
-    sed 's@image::@image::ROOT:@g' >"${file}.patched"
-  mv "${file}.patched" "$file"
-}
-
-while IFS='' read -r file || [[ -n "$file" ]]; do
-  info "Patching $file ..."
-  patch_file "$file"
-done < <(find . -name '*.adoc')
-
 python3 -m venv "${SCRIPT_DIR}/.venv"
 . "${SCRIPT_DIR}/.venv/bin/activate"
 pip3 install --upgrade pip setuptools
 pip3 install -r "${SCRIPT_DIR}/requirements.txt"
+
+find . -name '*.adoc' -print0 | xargs -0 "${SCRIPT_DIR}/patch-files.py"
 
 "${SCRIPT_DIR}/generate-nav.py" <"${DOCS_PATH}/_topic_map.yml"
 
