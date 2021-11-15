@@ -10,7 +10,7 @@
     var code, language, lang, copy, toast, toolbox
     if (pre.classList.contains('highlight')) {
       code = pre.querySelector('code')
-      if ((language = code.dataset.lang) && language !== 'console') {
+      if ((language = code.dataset.lang) && language !== 'console' && language !== 'terminal') {
         ;(lang = document.createElement('span')).className = 'source-lang'
         lang.appendChild(document.createTextNode(language))
       }
@@ -63,7 +63,8 @@
 
   function writeToClipboard (code) {
     var text = code.innerText.replace(TRAILING_SPACE_RX, '')
-    if (code.dataset.lang === 'console' && text.startsWith('$ ')) text = extractCommands(text)
+    if ((code.dataset.lang === 'console' || code.dataset.lang === 'terminal') &&
+      text.startsWith('$ ')) text = extractCommands(text)
     window.navigator.clipboard.writeText(text).then(
       function () {
         this.classList.add('clicked')
