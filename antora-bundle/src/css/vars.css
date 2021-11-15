@@ -60,14 +60,19 @@
   --page-version-missing-font-color: var(--color-gray-30);
   /* admonitions */
   --caution-color: #a0439c;
+  --caution-admonition-background: #a0439c15;
   --caution-on-color: var(--color-white);
   --important-color: #d32f2f;
+  --important-admonition-background: #d32f2f15;
   --important-on-color: var(--color-white);
   --note-color: #217ee7;
+  --note-admonition-background: #217ee715;
   --note-on-color: var(--color-white);
   --tip-color: #41af46;
+  --tip-admonition-background: #41af4615;
   --tip-on-color: var(--color-white);
   --warning-color: #e18114;
+  --warning-admonition-background: #e1811415;
   --warning-on-color: var(--color-white);
   /* doc */
   --doc-font-color: var(--color-jet-50);

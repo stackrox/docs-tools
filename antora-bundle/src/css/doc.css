@@ -293,6 +293,26 @@ h1.page + aside.toc.embedded {
   word-wrap: anywhere;
 }
 
+.doc .admonitionblock.caution td.content {
+  background: var(--caution-admonition-background);
+}
+
+.doc .admonitionblock.important td.content {
+  background: var(--important-admonition-background);
+}
+
+.doc .admonitionblock.note td.content {
+  background: var(--note-admonition-background);
+}
+
+.doc .admonitionblock.tip td.content {
+  background: var(--tip-admonition-background);
+}
+
+.doc .admonitionblock.warning td.content {
+  background: var(--warning-admonition-background);
+}
+
 .doc .admonitionblock .icon {
   position: absolute;
   top: 0;
