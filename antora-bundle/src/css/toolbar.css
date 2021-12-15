@@ -57,11 +57,12 @@
   padding-right: 0.5rem;
 }
 
+/* Commenting out for the embedded docs build
 @media screen and (min-width: 1024px) {
   .edit-this-page {
     display: block;
   }
-}
+} */
 
 .toolbar .edit-this-page a {
   color: var(--toolbar-muted-color);
