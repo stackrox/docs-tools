@@ -182,7 +182,7 @@ html.is-clipped--nav {
 .nav-panel-explore .context .version {
   display: flex;
   align-items: inherit;
-  width: 5rem;
+  width: 6rem;
 }
 
 .nav-panel-explore .context .version::after {
